@@ -1,2 +1,0 @@
-class CandidateDate < ApplicationRecord
-end
