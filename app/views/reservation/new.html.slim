@@ -1,1 +1,17 @@
-p top
+= form_for @reservation do |f|
+  = f.label :title
+  = f.text_field :event_name, class: 'form-control'
+  br
+  = f.label :お名前
+  = f.text_field :user_name, class: 'form-control'
+  br
+  = f.label :メールアドレス
+  = f.text_field :mail, class: 'form-control'
+  br
+  = f.label :電話番号
+  = f.text_field :phone_number, class: 'form-control'
+  br
+  = f.label :予約日時
+  = f.text_field :date, class: 'form-control'
+  br
+  = f.submit
