@@ -12,7 +12,7 @@ RSpec.describe ReservationController, type: :controller do
 
   let(:invalid_attributes) do
     {
-      user_name: 'ikegaya',
+      user_name: '',
       mail: '',
       phone_number: '',
       date: ''
