@@ -1,13 +1,13 @@
 h4 予約フォーム
 = form_for @reservation do |f|
   = f.label :お名前
-  = f.text_field :user_name, class: 'form-control'
+  = f.text_field :user_name
   br
   = f.label :メールアドレス
-  = f.text_field :mail, class: 'form-control'
+  = f.text_field :mail
   br
   = f.label :電話番号
-  = f.text_field :phone_number, class: 'form-control'
+  = f.text_field :phone_number
   br
   = f.select :date, [["4/1 12時", "2019-04-01 12:00:00"],
                     ["4/2 12時", "2019-04-02 12:00:00"],
@@ -15,4 +15,4 @@ h4 予約フォーム
                     ["4/4 12時", "2019-04-04 12:00:00"],
                     ["4/5 12時", "2019-04-05 12:00:00"]],  prompt: "予約日時を選択してください"
   br
-  = f.submit '予約を確定する'
+  = f.submit '予約を確定する', class: 'submit_button'
