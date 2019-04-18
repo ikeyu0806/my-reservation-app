@@ -6,6 +6,7 @@ class ReservationController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.save
+    redirect_to controller: :reservation, action: :new
   end
 
   private
