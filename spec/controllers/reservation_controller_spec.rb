@@ -46,12 +46,15 @@ RSpec.describe ReservationController, type: :controller do
     end
 
     context '不正なパラメータの場合' do
-      xit 'リクエストが成功すること' do
+      it 'リクエストが成功すること' do
         post :create, params: { reservation: invalid_attributes }
         expect(response.status).to eq 200
       end
 
-      xit '予約できないこと' do
+      it '予約できないこと' do
+        expect do
+          post :create, params: { reservation: invalid_attributes }
+        end.to change(Reservation, :count).by(0)
       end
     end
   end

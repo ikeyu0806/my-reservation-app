@@ -5,8 +5,11 @@ class ReservationController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservation.save
-    redirect_to controller: :reservation, action: :new
+    if @reservation.save
+      redirect_to controller: :reservation, action: :new
+    else
+      render 'new'
+    end
   end
 
   private
