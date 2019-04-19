@@ -1,0 +1,2 @@
+class ExcludedDate < ApplicationRecord
+end
