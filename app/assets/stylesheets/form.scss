@@ -23,6 +23,12 @@ label {
   float: left;
 }
 
+select {
+  background: none transparent;
+  vertical-align: middle;
+  font-size: inherit;
+}
+
 .submit_button {
   margin: 30px;
   border-radius : 25%;
