@@ -3,4 +3,6 @@ class Reservation < ApplicationRecord
   validates :mail, presence: true
   validates :phone_number, presence: true
   validates :date, presence: true
+
+  has_one :appointment_date
 end
