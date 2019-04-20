@@ -4,5 +4,5 @@ class Reservation < ApplicationRecord
   validates :phone_number, presence: true
   validates :date, presence: true
 
-  has_one :appointment_date
+  belongs_to :event, foreign_key: :event_id
 end

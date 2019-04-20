@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_050233) do
+ActiveRecord::Schema.define(version: 2019_04_20_063134) do
 
   create_table "appointment_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "from_date", null: false
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_050233) do
     t.date "excluded_date"
     t.string "wday"
     t.time "time"
-    t.bigint "reservation_id"
-    t.index ["reservation_id"], name: "fk_rails_f409fd285b"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "fk_rails_b107430ef1"
   end
 
   create_table "candidate_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_04_20_050233) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -45,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_050233) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.index ["event_id"], name: "fk_rails_af7a37539f"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,5 +56,6 @@ ActiveRecord::Schema.define(version: 2019_04_20_050233) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "appointment_dates", "reservations"
+  add_foreign_key "appointment_dates", "events"
+  add_foreign_key "reservations", "events"
 end

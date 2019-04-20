@@ -1,4 +1,6 @@
 class ReservationController < ApplicationController
+  before_action :get_candidate_dates
+
   def new
     @reservation = Reservation.new
     @appointment_dates = AppointmentDate.all
@@ -18,6 +20,10 @@ class ReservationController < ApplicationController
   def reservation_params
     params.require(:reservation).permit(
       :event_name, :user_name, :mail,
-      :phone_number, :date)
+      :phone_number, :event_id)
+  end
+
+  def get_candidate_dates
+    appointment_date = AppointmentDate.all
   end
 end
