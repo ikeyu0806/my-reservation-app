@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_010002) do
+ActiveRecord::Schema.define(version: 2019_04_20_050233) do
 
   create_table "appointment_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "from_date", null: false
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_010002) do
     t.date "excluded_date"
     t.string "wday"
     t.time "time"
+    t.bigint "reservation_id"
+    t.index ["reservation_id"], name: "fk_rails_f409fd285b"
   end
 
   create_table "candidate_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,4 +55,5 @@ ActiveRecord::Schema.define(version: 2019_04_20_010002) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointment_dates", "reservations"
 end

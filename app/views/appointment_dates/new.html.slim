@@ -20,4 +20,8 @@
                         ["木", "木"],
                         ["金", "金"],
                         ["土", "土"],],  prompt: "曜日を選択してください"
+    br
+    = f.label :reservation_id, class: 'label'
+    = f.number_field :reservation_id
+    br
     = f.submit '予約枠を設定する', class: 'submit_button'

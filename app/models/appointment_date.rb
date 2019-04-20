@@ -1,4 +1,3 @@
 class AppointmentDate < ApplicationRecord
-  # belongs_to :reservation
-  # has_one :excluded_date
+  belongs_to :reservation, foreign_key: :reservation_id
 end
