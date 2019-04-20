@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_010002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "excluded_date"
-    t.string "day"
+    t.string "wday"
     t.time "time"
   end
 
