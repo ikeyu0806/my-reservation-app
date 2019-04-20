@@ -9,14 +9,15 @@
     br
     = f.label :excluded_date, class: 'label'
     = f.date_field :excluded_date
-      br
-    / .li
-    /   .select
-    /     = f.select :wday, [["日", "日"],
-    /                       ["月", "月"],
-    /                       ["火", "火"],
-    /                       ["水", "水"],
-    /                       ["木", "木"],
-    /                       ["金", "金"],
-    /                       ["土", "土"],],  prompt: "曜日を選択してください"
+    br
+    br
+    .select
+      = f.label :wday
+      = f.select :wday, [["日", "日"],
+                        ["月", "月"],
+                        ["火", "火"],
+                        ["水", "水"],
+                        ["木", "木"],
+                        ["金", "金"],
+                        ["土", "土"],],  prompt: "曜日を選択してください"
     = f.submit '予約枠を設定する', class: 'submit_button'
