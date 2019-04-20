@@ -19,11 +19,6 @@
       = f.text_field :phone_number,  placeholder: "*入力必須", class: 'text_form'
       br
     .li
-      .select
-        = f.select :date, [["4/1 12時", "2019-04-01 12:00:00"],
-                          ["4/2 12時", "2019-04-02 12:00:00"],
-                          ["4/3 12時", "2019-04-03 12:00:00"],
-                          ["4/4 12時", "2019-04-04 12:00:00"],
-                          ["4/5 12時", "2019-04-05 12:00:00"]],  prompt: "日時を選択してください"
-        br
+      = f.label :予約日
+      = f.collection_select :date, Reservation.all, :created_at, :created_at
     = f.submit '予約を確定する', class: 'submit_button'

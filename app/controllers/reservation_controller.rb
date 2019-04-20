@@ -8,7 +8,7 @@ class ReservationController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    if @reservation.save
+    if @reservation.save!
       redirect_to controller: :reservation, action: :new
     else
       render 'new'
@@ -19,7 +19,7 @@ class ReservationController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(
-      :user_name, :mail, :phone_number, :event_id)
+      :user_name, :mail, :phone_number, :event_id, :date)
   end
 
   def get_candidate_dates
