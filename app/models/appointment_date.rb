@@ -9,7 +9,7 @@ class AppointmentDate < ApplicationRecord
     time = appointment_date.time
     candidate_date = []
     (DateTime.parse(from_date)..DateTime.parse(to_date)).each do |date|
-      candidate_date << date
+      candidate_date << date + Rational(time.strftime('%H').to_i, 24)
     end
     candidate_date
   end
