@@ -2,6 +2,7 @@ class ReservationController < ApplicationController
   before_action :get_candidate_dates
 
   def new
+    @event = Event.find(params[:format])
     @reservation = Reservation.new
     @appointment_dates = AppointmentDate.all
   end
@@ -19,11 +20,10 @@ class ReservationController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(
-      :event_name, :user_name, :mail,
-      :phone_number, :event_id)
+      :user_name, :mail, :phone_number, :event_id)
   end
 
   def get_candidate_dates
-    appointment_date = AppointmentDate.all
+    # appointment_date = 
   end
 end
