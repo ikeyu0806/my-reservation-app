@@ -3,8 +3,8 @@
     h2 予約フォーム
   = form_for @reservation do |f|
     .li
-      = f.label :対象イベント
-      = @event.name
+      = f.label :イベント名, class: 'label'
+      = f.collection_select :event_id, Event.all, :id, :name
       br
     .li
       = f.label :お名前, class: 'label'

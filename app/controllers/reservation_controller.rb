@@ -2,7 +2,6 @@ class ReservationController < ApplicationController
   before_action :get_candidate_dates
 
   def new
-    @event = Event.find(params[:format])
     @reservation = Reservation.new
     @appointment_dates = AppointmentDate.all
   end
