@@ -1,6 +1,7 @@
 class ReservationController < ApplicationController
   def new
     @reservation = Reservation.new
+    @appointment_dates = AppointmentDate.all
   end
 
   def create
