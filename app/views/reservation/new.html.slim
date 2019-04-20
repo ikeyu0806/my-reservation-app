@@ -17,5 +17,5 @@
       br
     .li
       = f.label :予約日
-      = f.collection_select :date, Event.all, :created_at, :created_at
+      = f.select :date, @appointment_date
     = f.submit '予約を確定する', class: 'submit_button'
