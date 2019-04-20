@@ -2,10 +2,7 @@
   .form_title
     h2 予約フォーム
   = form_for @reservation do |f|
-    .li
-      = f.label :イベント名, class: 'label'
-      = f.collection_select :event_id, Event.all, :id, :name
-      br
+    = f.hidden_field :event_id, value: @event_id.to_i
     .li
       = f.label :お名前, class: 'label'
       = f.text_field :user_name,  placeholder: "*入力必須", class: 'text_form'
@@ -20,5 +17,5 @@
       br
     .li
       = f.label :予約日
-      = f.collection_select :date, Reservation.all, :created_at, :created_at
+      = f.collection_select :date, Event.all, :created_at, :created_at
     = f.submit '予約を確定する', class: 'submit_button'

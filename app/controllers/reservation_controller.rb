@@ -2,6 +2,7 @@ class ReservationController < ApplicationController
   before_action :get_candidate_dates
 
   def new
+    @event_id = params[:event_id]
     @reservation = Reservation.new
     @appointment_dates = AppointmentDate.all
   end
