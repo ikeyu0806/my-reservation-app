@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe ReservationController, type: :controller do
+  # event = Event.create!(id: 1, name: '飲み会')
+
   let(:valid_attributes) do
     {
       user_name: 'ikegaya',
       mail: 'test@example.com',
       phone_number: '09012345678',
-      date: '2019-05-01 18:00:00'
+      date: '2019-05-01 18:00:00',
+      event_id: 1
     }
   end
 
@@ -15,13 +18,14 @@ RSpec.describe ReservationController, type: :controller do
       user_name: '',
       mail: '',
       phone_number: '',
-      date: ''
+      date: '',
+      event_id: 100
     }
   end
 
   describe 'GET #new' do
     it '正常に応答すること' do
-      get :new, params: {}
+      get :new, params: { reservation: valid_attributes }
       expect(response).to be_successful
     end
   end
@@ -39,9 +43,9 @@ RSpec.describe ReservationController, type: :controller do
         end.to change(Reservation, :count).by(1)
       end
 
-      it '予約ページにリダイレクトすること' do
+      it 'イベントにリダイレクトすること' do
         post :create, params: { reservation: valid_attributes }
-        expect(response).to redirect_to controller: :reservation, action: :new
+        expect(response).to redirect_to controller: :events, action: :index
       end
     end
 
