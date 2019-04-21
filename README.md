@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+簡易予約アプリケーション
 
-Things you may want to cover:
+メモ
 
-* Ruby version
+とりあえず候補日と除外日はコンソールから入れる
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+AppointmentDate.create!(to_date: '2019-05-01 00:00:00', from_date: '2019-04-01 00:00:00')
+```

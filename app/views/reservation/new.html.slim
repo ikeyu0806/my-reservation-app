@@ -2,6 +2,7 @@
   .form_title
     h2 予約フォーム
   = form_for @reservation do |f|
+    = f.hidden_field :event_id, value: @event_id.to_i
     .li
       = f.label :お名前, class: 'label'
       = f.text_field :user_name,  placeholder: "*入力必須", class: 'text_form'
@@ -15,11 +16,6 @@
       = f.text_field :phone_number,  placeholder: "*入力必須", class: 'text_form'
       br
     .li
-      .select
-        = f.select :date, [["4/1 12時", "2019-04-01 12:00:00"],
-                          ["4/2 12時", "2019-04-02 12:00:00"],
-                          ["4/3 12時", "2019-04-03 12:00:00"],
-                          ["4/4 12時", "2019-04-04 12:00:00"],
-                          ["4/5 12時", "2019-04-05 12:00:00"]],  prompt: "日時を選択してください"
-        br
+      = f.label :予約日
+      = f.select :date, @appointment_dates
     = f.submit '予約を確定する', class: 'submit_button'

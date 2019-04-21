@@ -1,27 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe ReservationController, type: :controller do
+  let!(:event) { create(:event) }
+  let!(:appointment_date) { create(:appointment_date, event: event) }
+
   let(:valid_attributes) do
     {
       user_name: 'ikegaya',
       mail: 'test@example.com',
       phone_number: '09012345678',
-      date: '2019-05-01 18:00:00'
+      date: '2019-05-01 18:00:00',
+      event_id: 10
     }
   end
 
   let(:invalid_attributes) do
     {
       user_name: '',
-      mail: '',
-      phone_number: '',
-      date: ''
+      mail: 'test@example.com',
+      phone_number: '09012345678',
+      date: '123',
+      event_id: 1
     }
   end
 
   describe 'GET #new' do
     it '正常に応答すること' do
-      get :new, params: {}
+      get :new, params: { reservation: valid_attributes, event_id: 10 }
       expect(response).to be_successful
     end
   end
@@ -39,16 +44,16 @@ RSpec.describe ReservationController, type: :controller do
         end.to change(Reservation, :count).by(1)
       end
 
-      it '予約ページにリダイレクトすること' do
+      it 'イベントにリダイレクトすること' do
         post :create, params: { reservation: valid_attributes }
-        expect(response).to redirect_to controller: :reservation, action: :new
+        expect(response).to redirect_to controller: :events, action: :index
       end
     end
 
     context '不正なパラメータの場合' do
-      it 'リクエストが成功すること' do
+      it '正常に応答すること' do
         post :create, params: { reservation: invalid_attributes }
-        expect(response.status).to eq 200
+        expect(response).to be_successful
       end
 
       it '予約できないこと' do
