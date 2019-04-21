@@ -12,5 +12,9 @@ RSpec.describe AppointmentDate, type: :model do
     it '想定どおり候補日が返ること' do
       expect(subject).to include 'Fri, 05 Apr 2019 15:00:00.000000000 +0000'
     end
+
+    it '想定どおり候補日が返ること' do
+      expect(subject).not_to include 'Fri, 12 Apr 2019 15:00:00.000000000 +0000'
+    end
   end
 end
