@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ReservationController, type: :controller do
-  let!(:event) { create(:event) }
+  # let!(:event) { create(:event) }
   let!(:appointment_date) { create(:appointment_date) }
 
   let(:valid_attributes) do
@@ -25,8 +25,8 @@ RSpec.describe ReservationController, type: :controller do
   end
 
   describe 'GET #new' do
-    xit '正常に応答すること' do
-      get :new, params: { reservation: valid_attributes }
+    it '正常に応答すること' do
+      get :new, params: { reservation: valid_attributes, event_id: 1 }
       expect(response).to be_successful
     end
   end
