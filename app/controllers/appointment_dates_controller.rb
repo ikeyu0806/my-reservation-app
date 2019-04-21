@@ -5,7 +5,7 @@ class AppointmentDatesController < ApplicationController
 
   def create
     @appointment_date = AppointmentDate.new(appointment_date_params)
-    if @appointment_date.save!
+    if @appointment_date.save
       redirect_to controller: :appointment_dates, action: :new
     else
       render 'new'

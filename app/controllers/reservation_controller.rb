@@ -9,7 +9,7 @@ class ReservationController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    if @reservation.save!
+    if @reservation.save
       redirect_to controller: :events, action: :index
     else
       render 'new'

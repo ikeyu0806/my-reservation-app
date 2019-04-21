@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ReservationController, type: :controller do
-  # event = Event.create!(id: 1, name: '飲み会')
+  let!(:event) { create(:event) }
+  let!(:appointment_date) { create(:appointment_date) }
 
   let(:valid_attributes) do
     {
@@ -16,10 +17,10 @@ RSpec.describe ReservationController, type: :controller do
   let(:invalid_attributes) do
     {
       user_name: '',
-      mail: '',
-      phone_number: '',
-      date: '',
-      event_id: 100
+      mail: 'test@example.com',
+      phone_number: '09012345678',
+      date: '123',
+      event_id: 1
     }
   end
 
@@ -50,9 +51,9 @@ RSpec.describe ReservationController, type: :controller do
     end
 
     context '不正なパラメータの場合' do
-      it 'リクエストが成功すること' do
+      it '正常に応答すること' do
         post :create, params: { reservation: invalid_attributes }
-        expect(response.status).to eq 200
+        expect(response).to be_successful
       end
 
       it '予約できないこと' do
