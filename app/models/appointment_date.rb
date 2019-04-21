@@ -1,4 +1,7 @@
 class AppointmentDate < ApplicationRecord
+  validates :from_date, presence: true
+  validates :to_date, presence: true
+
   belongs_to :event, foreign_key: :event_id
 
   def self.candidate_date(event_id)

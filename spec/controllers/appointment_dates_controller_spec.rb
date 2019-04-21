@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentDatesController, type: :controller do
-  event = Event.create!(id: 1, name: '飲み会')
-
+  let!(:appointment_date) { create(:appointment_date) }
   let(:valid_attributes) do
     {
       from_date: '2019-04-01 00:00:00',
@@ -15,11 +14,11 @@ RSpec.describe AppointmentDatesController, type: :controller do
 
   let(:invalid_attributes) do
     {
-      from_date: '2019-04-01 00:00:00',
+      from_date: '',
       to_date: '2019-05-01 00:00:00',
       wday: 'friday',
       time: '15:00:00',
-      event_id: '100'
+      event_id: 1
     }
   end
 
@@ -33,32 +32,32 @@ RSpec.describe AppointmentDatesController, type: :controller do
   describe 'POST #create' do
     context '正常なパラメータの場合' do
       it 'リクエストが成功すること' do
-        post :create, params: { appointment_dates: valid_attributes }
+        post :create, params: { appointment_date: valid_attributes }
         expect(response.status).to eq 302
       end
 
-      it '正常に予約できること' do
+      it '正常に予約枠設定が登録できること' do
         expect do
-          post :create, params: { appointment_dates: valid_attributes }
-        end.to change(AppointmentDates, :count).by(1)
+          post :create, params: { appointment_date: valid_attributes }
+        end.to change(AppointmentDate, :count).by(1)
       end
 
       it '予約ページにリダイレクトすること' do
-        post :create, params: { appointment_dates: valid_attributes }
+        post :create, params: { appointment_date: valid_attributes }
         expect(response).to redirect_to controller: :appointment_dates, action: :new
       end
     end
 
     context '不正なパラメータの場合' do
-      it 'リクエストが成功すること' do
-        post :create, params: { appointment_dates: invalid_attributes }
-        expect(response.status).to eq 200
+      it '正常に応答すること' do
+        post :create, params: { appointment_date: invalid_attributes }
+        expect(response).to be_successful
       end
 
-      it '予約できないこと' do
+      it '予約枠設定が登録できないこと' do
         expect do
-          post :create, params: { appointment_dates: invalid_attributes }
-        end.to change(AppointmentDates, :count).by(0)
+          post :create, params: { appointment_date: invalid_attributes }
+        end.to change(AppointmentDate, :count).by(0)
       end
     end
   end
