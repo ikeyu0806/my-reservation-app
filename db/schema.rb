@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_234439) do
+ActiveRecord::Schema.define(version: 2019_04_21_112742) do
 
   create_table "appointment_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "from_date", null: false
@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 2019_04_20_234439) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "excluded_date"
-    t.string "wday", limit: 10
-    t.time "time"
-    t.bigint "event_id"
+    t.string "wday", null: false
+    t.time "time", null: false
+    t.bigint "event_id", null: false
     t.index ["event_id"], name: "fk_rails_b107430ef1"
   end
 

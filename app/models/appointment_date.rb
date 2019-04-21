@@ -1,6 +1,9 @@
 class AppointmentDate < ApplicationRecord
   validates :from_date, presence: true
   validates :to_date, presence: true
+  validates :time, presence: true
+  validates :wday, presence: true
+  validates :event_id, presence: true
 
   belongs_to :event, foreign_key: :event_id
 
