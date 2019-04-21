@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ReservationController, type: :controller do
-  # let!(:event) { create(:event) }
-  let!(:appointment_date) { create(:appointment_date) }
+  let!(:event) { create(:event) }
+  let!(:appointment_date) { create(:appointment_date, event: event) }
 
   let(:valid_attributes) do
     {
@@ -10,7 +10,7 @@ RSpec.describe ReservationController, type: :controller do
       mail: 'test@example.com',
       phone_number: '09012345678',
       date: '2019-05-01 18:00:00',
-      event_id: 1
+      event_id: 10
     }
   end
 
@@ -26,7 +26,7 @@ RSpec.describe ReservationController, type: :controller do
 
   describe 'GET #new' do
     it '正常に応答すること' do
-      get :new, params: { reservation: valid_attributes, event_id: 1 }
+      get :new, params: { reservation: valid_attributes, event_id: 10 }
       expect(response).to be_successful
     end
   end

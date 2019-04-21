@@ -6,8 +6,12 @@ RSpec.describe AppointmentDate, type: :model do
   it { should validate_presence_of(:wday) }
   it { should validate_presence_of(:time) }
   it { should validate_presence_of(:event_id) }
-  xit { should validate_uniqueness_of(:event_id) }
   it { should belong_to(:event) }
+
+  # need for uniquness test
+  let!(:appointment_date) { create(:appointment_date, event: event) }
+  let!(:event) { create(:event) }
+  it { should validate_uniqueness_of(:event_id) }
 
   describe 'candidate_dateメソッドの確認' do
 
