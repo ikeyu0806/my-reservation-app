@@ -1,6 +1,9 @@
   .form_title
-    h2 予約枠設定フォーム（範囲、曜日、除外日指定）
+    h2 予約枠設定フォーム（日付範囲、曜日、除外日指定）
   = form_for @appointment_date do |f|
+    = f.label :event_id
+    = f.collection_select :event_id, Event.all, :id, :name
+    br
     = f.label :from_date, class: 'label'
     = f.date_field :from_date
     br
@@ -13,15 +16,12 @@
     br
     .select
       = f.label :wday
-      = f.select :wday, [["日", "日"],
-                        ["月", "月"],
-                        ["火", "火"],
-                        ["水", "水"],
-                        ["木", "木"],
-                        ["金", "金"],
-                        ["土", "土"],],  prompt: "曜日を選択してください"
-    br
-    = f.label :reservation_id, class: 'label'
-    = f.number_field :reservation_id
+      = f.select :wday, [["日", "sunday"],
+                        ["月", "monday"],
+                        ["火", "tuesday"],
+                        ["水", "wednesday	"],
+                        ["木", "thursday"],
+                        ["金", "friday"],
+                        ["土", "saturday"],],  prompt: "曜日を選択してください"
     br
     = f.submit '予約枠を設定する', class: 'submit_button'
