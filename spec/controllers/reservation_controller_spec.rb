@@ -25,7 +25,7 @@ RSpec.describe ReservationController, type: :controller do
   end
 
   describe 'GET #new' do
-    it '正常に応答すること' do
+    xit '正常に応答すること' do
       get :new, params: { reservation: valid_attributes }
       expect(response).to be_successful
     end
