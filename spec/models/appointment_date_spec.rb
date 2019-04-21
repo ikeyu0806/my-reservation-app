@@ -6,12 +6,14 @@ RSpec.describe AppointmentDate, type: :model do
   it { should validate_presence_of(:wday) }
   it { should validate_presence_of(:time) }
   it { should validate_presence_of(:event_id) }
+  xit { should validate_uniqueness_of(:event_id) }
   it { should belong_to(:event) }
 
   describe 'candidate_dateメソッドの確認' do
 
-    subject { AppointmentDate.candidate_date(1) }
-    let!(:appointment_date) { create(:appointment_date) }
+    subject { AppointmentDate.candidate_date(10) }
+    let!(:appointment_date) { create(:appointment_date, event: event) }
+    let!(:event) { create(:event) }
     it '想定どおり候補日が返ること' do
       expect(subject).to include 'Fri, 05 Apr 2019 15:00:00.000000000 +0000'
     end

@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentDatesController, type: :controller do
-  let!(:appointment_date) { create(:appointment_date) }
+  let!(:event) { create(:event) }
+  let(:appointment_date) { create(:appointment_date, event: event) }
   let(:valid_attributes) do
     {
       from_date: '2019-04-01 00:00:00',
       to_date: '2019-05-01 00:00:00',
       wday: 'friday',
       time: '15:00:00',
-      event_id: 1
+      event_id: 10
     }
   end
 
@@ -18,7 +19,7 @@ RSpec.describe AppointmentDatesController, type: :controller do
       to_date: '2019-05-01 00:00:00',
       wday: 'friday',
       time: '15:00:00',
-      event_id: 1
+      event_id: 10
     }
   end
 

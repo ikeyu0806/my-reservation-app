@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_21_112742) do
+ActiveRecord::Schema.define(version: 2019_04_21_121803) do
 
   create_table "appointment_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "from_date", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_04_21_112742) do
     t.string "wday", null: false
     t.time "time", null: false
     t.bigint "event_id", null: false
-    t.index ["event_id"], name: "fk_rails_b107430ef1"
+    t.index ["event_id"], name: "index_appointment_dates_on_event_id", unique: true
   end
 
   create_table "candidate_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
