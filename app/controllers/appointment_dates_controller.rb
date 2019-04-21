@@ -5,7 +5,7 @@ class AppointmentDatesController < ApplicationController
 
   def create
     @appointment_date = AppointmentDate.new(appointment_date_params)
-    if @appointment_date.save
+    if @appointment_date.save!
       redirect_to controller: :appointment_dates, action: :new
     else
       render 'new'
@@ -16,6 +16,6 @@ class AppointmentDatesController < ApplicationController
   def appointment_date_params
     params.require(:appointment_date).permit(
       :from_date, :to_date, :excluded_date,
-      :wday, :time, :date)
+      :wday, :time, :date, :event_id)
   end
 end
