@@ -3,9 +3,8 @@ class ReservationController < ApplicationController
 
   def new
     @event_id = params[:event_id]
-    @appointment_date = AppointmentDate.candidate_date(@event_id).take(MAX_DISPLAY)
+    @appointment_dates = AppointmentDate.candidate_date(@event_id).take(MAX_DISPLAY)
     @reservation = Reservation.new
-    @appointment_dates = AppointmentDate.all
   end
 
   def create
